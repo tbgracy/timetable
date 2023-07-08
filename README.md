@@ -20,7 +20,7 @@ A CLI tool that allow you to generate a timetable for your school or university 
 
 ## 🖱 Usage
 ```bash
-generate-timetable
+wcc-timetable-generator
 ```
 
 ## Roadmap
