@@ -47,7 +47,8 @@ class MyApp(App):
         yield DataTable(id="table")
         yield Button("Générer", id="submit")
 
-    def transposed(self, data):
+    @staticmethod
+    def transposed(data):
         max_row_length = max(len(row) for row in data)
 
         transposed_data = []
