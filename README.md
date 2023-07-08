@@ -16,3 +16,9 @@ A CLI tool that allow you to generate a timetable for your school or university 
  ### 🌐 Installation with PIP
 
 ## 🖱 Usage
+
+## Roadmap
+- [x] Add the algorithm 
+- [ ] Add GUI
+- [ ] Write tests
+- [ ] Publish to PyPI
