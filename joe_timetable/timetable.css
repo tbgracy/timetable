@@ -1,0 +1,22 @@
+Screen {
+    layout: vertical;
+}
+
+#container {
+    layout: horizontal;
+    margin-top: 5;
+}
+
+#title {
+    text-align: center;
+    color: aqua;
+    width: 100%
+}
+
+Input {
+    width: 100%;
+}
+
+.form {
+    margin: 1;
+}
