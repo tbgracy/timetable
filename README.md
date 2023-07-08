@@ -25,6 +25,6 @@ wcc-timetable-generator
 
 ## Roadmap
 - [x] Add the algorithm 
-- [ ] Add GUI
+- [x] Add GUI
 - [ ] Write tests
-- [ ] Publish to PyPI
+- [x] Publish to PyPI
