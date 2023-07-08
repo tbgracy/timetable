@@ -7,9 +7,11 @@ from textual.widgets import Button, Input, Label, DataTable, LoadingIndicator
 
 from algo import Subject, generate_timetable
 
-Jours = ("", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi")
+Jours = ("Horaire/Jours", "  Lundi  ", "  Mardi  ",
+         "  Mercredi  ", "  Jeudi  ", "  Vendredi  ", "  Samedi  ")
 horaires = [["8h30 - 10h30"], ["10h45 - 12h45"],
             ["13h30 - 15h30"], ["15h45 - 17h45"]]
+separator = [[""], [""]]
 
 
 class MyApp(App):
@@ -43,7 +45,7 @@ class MyApp(App):
                 yield Input(id="ang", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
 
         yield DataTable(id="table")
-        yield Button("Submit", id="submit")
+        yield Button("Générer", id="submit")
 
     def transposed(self, data):
         max_row_length = max(len(row) for row in data)
@@ -66,28 +68,40 @@ class MyApp(App):
     def submit_action(self, event: Button.Pressed) -> None:
         try:
             global horaires
-            heurs_sgbd = int(self.query_one("#sgbd", Input).value)
-            
+
+            heur_sgb = int(self.query_one("#sgbd", Input).value)
+            heur_sys = int(self.query_one("#sysAdmin", Input).value)
+            heur_dev = int(self.query_one("#devWeb", Input).value)
+            heur_algo = int(self.query_one("#algo", Input).value)
+            heur_comm = int(self.query_one("#comm", Input).value)
+            heur_ang = int(self.query_one("#ang", Input).value)
+
+            hour = [heur_sgb, heur_sys, heur_dev,
+                    heur_algo, heur_comm, heur_ang]
+
+            for h in hour:
+                if not 2 <= h <= 6:
+                    raise Exception
 
             subjects = [
-                Subject("SGBD", int(self.query_one("#sgbd", Input).value)),
-                Subject("SysAdmin", int(
-                    self.query_one("#sysAdmin", Input).value)),
-                Subject("Dev WEB", int(self.query_one("#devWeb", Input).value)),
-                Subject("Algo", int(self.query_one("#algo", Input).value)),
-                Subject("Comm", int(self.query_one("#comm", Input).value)),
-                Subject("Anglais", int(self.query_one("#ang", Input).value))
+                Subject("SGBD", heur_sgb),
+                Subject("SysAdmin", heur_sys),
+                Subject("Dev WEB", heur_dev),
+                Subject("Algo", heur_algo),
+                Subject("Comm", heur_comm),
+                Subject("Anglais", heur_ang)
             ]
 
             time_table = generate_timetable(subjects)
 
-            table = self.query_one(DataTable)
+            table = self.query_one("#table", DataTable)
 
             time_table = [h + subjects_in_one_day for h,
-                          subjects_in_one_day in zip(horaires, self.transposed(time_table))]
+                          subjects_in_one_day in zip(horaires, self.transposed(time_table))] + separator
 
             table.add_rows(time_table)
-        except Exception as _e:
+
+        except Exception as e_:
             pass
 
 
