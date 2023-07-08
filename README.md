@@ -14,8 +14,14 @@ A CLI tool that allow you to generate a timetable for your school or university 
  ### 💻 Local installation
 
  ### 🌐 Installation with PIP
+ ```bash
+ pip install wcc-timetable-generator
+ ```
 
 ## 🖱 Usage
+```bash
+generate-timetable
+```
 
 ## Roadmap
 - [x] Add the algorithm 
