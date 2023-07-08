@@ -5,8 +5,8 @@ from pprint import pprint as print
 
 
 def generate_timetable(subjects: List[Subject]):
-    timetable = [["vide"] * 4 for _ in range(5)]
-    timetable.append(["vide", "vide"])
+    timetable = [[None] * 4 for _ in range(5)]
+    timetable.append([None, None])
 
     for subject in subjects:
         distribute_hours(timetable, subject)
@@ -48,7 +48,7 @@ def is_not_present_in_consecutive_days(timetable, day, subject):
 
 
 def is_slot_available(timetable, day, slot):
-    return timetable[day][slot] == "vide"
+    return timetable[day][slot] is None
 
 
 if __name__ == '__main__':
