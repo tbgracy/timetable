@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "timetable"
+name = "wcc-timetable-generator"
 version = "0.1.0"
 description = ""
 authors = ["Tsierenana Bôtramanagna Gracy <gtsierenana@gmail.com>"]
