@@ -20,3 +20,21 @@ Input {
 .form {
     margin: 1;
 }
+
+Input.-valid {
+    border: tall $success 60%;
+}
+
+Input.-valid:focus {
+    border: tall $success;
+}
+
+#table {
+    width: 100%;
+    height: 50%;
+    align: center middle;
+}
+
+#submit {
+    background: rgb(138, 199, 138);
+}
