@@ -1,13 +1,16 @@
 [tool.poetry]
 name = "wcc-timetable-generator"
-version = "0.1.0"
+version = "0.2.0"
 description = ""
 authors = ["Tsierenana Bôtramanagna Gracy <gtsierenana@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.8"
+textual = "^0.29.0"
 
+[tool.poetry.scripts]
+generate-timetable = "wcc_timetable_generator.__main__:main"
 
 [build-system]
 requires = ["poetry-core"]
