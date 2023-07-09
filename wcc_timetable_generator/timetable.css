@@ -39,3 +39,11 @@ Input.-valid:focus {
 #submit {
     background: rgb(138, 199, 138);
 }
+
+#btn-container {
+    layout: horizontal;
+}
+
+#quite {
+    background: rgb(211, 105, 105);
+}

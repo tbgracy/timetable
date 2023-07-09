@@ -46,7 +46,9 @@ class MyApp(App):
                 yield Input(id="ang", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
 
         yield DataTable(id="table")
-        yield Button("Générer", id="submit")
+        with Container(id="btn-container"):
+            yield Button("Générer", id="submit")
+            yield Button("Quiter", id="quite")
 
     @staticmethod
     def transposed(data):
@@ -108,6 +110,10 @@ class MyApp(App):
 
         except Exception as e_:
             pass
+    
+    @on(Button.Pressed, "#quite")
+    def quit_action(self, event: Button.Pressed):
+        exit()
 
 
 if __name__ == "__main__":
