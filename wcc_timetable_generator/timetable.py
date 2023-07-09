@@ -9,7 +9,7 @@ from .algo import Subject, generate_timetable
 
 Jours = ("", "  Monday  ", "  Tuesday  ",
          "  Wednesday  ", "  Thursday  ", "  Friday  ", "  Saturday  ")
-horaires = [["8:30 AM-9:30 AM"], ["9:30 AM-10:30 AM"], ["10:30 AM-11:30 AM"], ["11:30 AM-12:30 PM"],
+hourly = [["8:30 AM-9:30 AM"], ["9:30 AM-10:30 AM"], ["10:30 AM-11:30 AM"], ["11:30 AM-12:30 PM"],
             ["13:30 PM-14:30 PM"], ["14:30 PM-15:30 PM"], ["15:30 PM-16:30 PM"], ["16:30 PM-17:30 PM"]]
 
 row_keys = []
@@ -80,7 +80,7 @@ class MyApp(App):
     @on(Button.Pressed, "#submit")
     def submit_action(self, event: Button.Pressed) -> None:
         try:
-            global horaires
+            global hourly
             global row_keys
 
             heur_sgb = int(self.query_one("#sgbd", Input).value)
@@ -90,10 +90,10 @@ class MyApp(App):
             heur_comm = int(self.query_one("#comm", Input).value)
             heur_ang = int(self.query_one("#ang", Input).value)
 
-            hour = [heur_sgb, heur_sys, heur_dev,
+            hours = [heur_sgb, heur_sys, heur_dev,
                     heur_algo, heur_comm, heur_ang]
 
-            for h in hour:
+            for h in hours:
                 if not 2 <= h <= 6:
                     raise Exception
 
@@ -110,17 +110,17 @@ class MyApp(App):
 
             table = self.query_one("#table", DataTable)
 
-            time_table = self.transposed(time_table)
+            transposed_timetable = self.transposed(time_table)
 
-            time_table = [h + line for h,
-                          line in zip(horaires, time_table)]
+            timetable_plus_hourly = [hour + line for hour,
+                          line in zip(hourly, transposed_timetable)]
 
-            time_table.insert(4, [])
+            timetable_plus_hourly.insert(4, []) # add seprator line
 
             for row_key in row_keys:
                 table.remove_row(row_key)
 
-            row_keys = table.add_rows(time_table)
+            row_keys = table.add_rows(timetable_plus_hourly)
 
         except Exception as e_:
             pass
