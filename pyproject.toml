@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "wcc-timetable-generator"
-version = "1.0.1"
+version = "1.1.3"
 description = ""
 authors = ["Tsierenana Bôtramanagna Gracy <gtsierenana@gmail.com>"]
 readme = "README.md"

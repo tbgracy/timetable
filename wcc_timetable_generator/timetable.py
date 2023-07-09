@@ -3,14 +3,14 @@ from textual.app import App, ComposeResult
 from textual import events, on
 from textual.containers import Container
 from textual.validation import Number
-from textual.widgets import Button, Input, Label, DataTable, LoadingIndicator
+from textual.widgets import Button, Input, Label, DataTable, LoadingIndicator, Pretty
 
 from .algo import Subject, generate_timetable
 
-Jours = ("Horaire/Jours", "  Lundi  ", "  Mardi  ",
-         "  Mercredi  ", "  Jeudi  ", "  Vendredi  ", "  Samedi  ")
-horaires = [["8h30-9h30"], ["9h30-10h30"], ["10h30-11h30"], ["11h30-12h30"],
-            ["12h30-13h30"], ["13h30-14h30"], ["14h30-15h30"], ["15h30-16h30"], ["16h30-17h30"]]
+Jours = ("", "  Monday  ", "  Tuesday  ",
+         "  Wednesday  ", "  Thursday  ", "  Friday  ", "  Saturday  ")
+horaires = [["8:30 AM-9:30 AM"], ["9:30 AM-10:30 AM"], ["10:30 AM-11:30 AM"], ["11:30 AM-12:30 PM"],
+            ["13:30 PM-14:30 PM"], ["14:30 PM-15:30 PM"], ["15:30 PM-16:30 PM"], ["16:30 PM-17:30 PM"]]
 
 row_keys = []
 
@@ -22,33 +22,41 @@ class MyApp(App):
         yield Label("Time Table", id="title")
         with Container(id="container"):
             with Container(classes="form"):
-                yield Label("SGBD")
-                yield Input(id="sgbd", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
+                yield Label("DBMS")
+                yield Input(id="sgbd", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
-                yield Label("SysAdmin")
-                yield Input(id="sysAdmin", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
+                yield Label("System and Network Administration")
+                yield Input(id="sysAdmin", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
-                yield Label("Dev Web")
-                yield Input(id="devWeb", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
+                yield Label("Web Development")
+                yield Input(id="devWeb", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
-                yield Label("Algo")
-                yield Input(id="algo", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
+                yield Label("Algorithm")
+                yield Input(id="algo", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
                 yield Label("Communitcation")
-                yield Input(id="comm", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
+                yield Input(id="comm", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
-                yield Label("Anglais")
-                yield Input(id="ang", placeholder="Heure", validators=[Number(minimum=2, maximum=6)])
+                yield Label("English")
+                yield Input(id="ang", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
+        yield Pretty([])
         yield DataTable(id="table")
         with Container(id="btn-container"):
-            yield Button("Générer", id="submit")
-            yield Button("Quitter", id="quit")
+            yield Button("Generate", id="submit")
+            yield Button("Quit", id="quit")
+
+    @on(Input.Changed)
+    def show_invalid_reasons(self, event: Input.Changed) -> None:
+        if not event.validation_result.is_valid:
+            self.query_one(Pretty).update(event.validation_result.failure_descriptions)
+        else:
+            self.query_one(Pretty).update("Everything is fine")
 
     @staticmethod
     def transposed(data):
@@ -66,6 +74,7 @@ class MyApp(App):
 
     def on_mount(self) -> None:
         table = self.query_one(DataTable)
+        table.zebra_stripes = True
         table.add_columns(*Jours)
 
     @on(Button.Pressed, "#submit")
@@ -101,11 +110,16 @@ class MyApp(App):
 
             table = self.query_one("#table", DataTable)
 
+            time_table = self.transposed(time_table)
+
             time_table = [h + line for h,
-                          line in zip(horaires, self.transposed(time_table))]
+                          line in zip(horaires, time_table)]
+
+            time_table.insert(4, [])
 
             for row_key in row_keys:
                 table.remove_row(row_key)
+
             row_keys = table.add_rows(time_table)
 
         except Exception as e_:

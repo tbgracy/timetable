@@ -32,12 +32,11 @@ If you installed it with pip, this is how to run the project :
 wcc-timetable-generator
 ```
 
-## Roadmap
+## ✅ Roadmap
 - [x] Add the algorithm 
 - [x] Add GUI-like UI
 - [x] Publish to PyPI
-- [ ] Fix display and algo so that there are are 1 hour classes
 - [ ] Add an animated GIF as demo to `README.md`
 - [ ] Write tests
 - [x] Add quit button
-- [ ] Print error messages
+- [x] Print error messages
