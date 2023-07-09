@@ -1,5 +1,7 @@
 # Timetable 📊
 
+![screenshot](screenshot.png)
+
 ## 📰 Description 
 A CLI tool that allow you to generate a timetable for your school or university such that : 
  - A subject can't be seen on two consecutive days
@@ -11,9 +13,15 @@ A CLI tool that allow you to generate a timetable for your school or university 
 
  ## 📦 Installation 
 
- ### 💻 Local installation
+ ### 🌐 Installation with [PIP](https://pypi.org/)
+ You can install it using remote [PIP repository](https://pypi.org/project/wcc-timetable-generator/) as follows :
+ ```bash
+ pip install wcc-timetable-generator
+ ```
 
-To install this project locally, you first have to clone this repo and install [poetry](https://python-poetry.org/) with pip : `pip install poetry`.
+ ### 💻 Installation from source
+
+To install this project from source, you first have to clone this repo and install [poetry](https://python-poetry.org/) with pip : `pip install poetry`.
 Then, go to the root directory and run the following commands : 
 ```bash
 poetry install # install all the necessary dependencies
@@ -21,16 +29,20 @@ poetry build
 poetry run python -m wcc_timetable_generator 
 ```
 
- ### 🌐 Installation with PIP
- ```bash
- pip install wcc-timetable-generator
- ```
-
 ## 🖱 Usage
 If you installed it with pip, this is how to run the project : 
 ```bash
 wcc-timetable-generator
 ```
+NB : In some case it may not run so you need to install it as administrator (using `sudo` on Linux or macOS or running the command prompt as administrator on Windows) or run as `python -m wcc_timetable_generator`.
+
+If you installed it locally, this is how to run the project : 
+```bash
+poetry run python -m wcc_timetable_generator 
+```
+A GUI-like UI will appear, you can enter the number of hours per week for each subject that must be between 2  and 6 (otherwise it won't generate the timetable). Then, click on the `Generate` button to generate the timetable. If you want to quit, click on the `Quit` button. A random timetable based on the constraints will appear. 
+You can click on the `Generate` button to generate another timetable.
+You can also edit the number of hours before re-generating.
 
 ## ✅ Roadmap
 - [x] Add the algorithm 
