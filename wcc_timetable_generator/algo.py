@@ -1,12 +1,13 @@
 from typing import List
-from subject_model import Subject
+from .subject_model import Subject
 from random import shuffle
 from pprint import pprint as print
 
+SLOT_DURATION = 1
 
 def generate_timetable(subjects: List[Subject]):
-    timetable = [[None] * 4 for _ in range(5)]
-    timetable.append([None, None])
+    timetable = [[None] * 8 for _ in range(5)]
+    timetable.append([None] * 4)
 
     for subject in subjects:
         distribute_hours(timetable, subject)
@@ -27,7 +28,7 @@ def distribute_hours(timetable, subject):
     for (day, slot) in slots:
         if is_slot_available(timetable, day, slot) and is_not_present_in_consecutive_days(timetable, day, subject):
             timetable[day][slot] = subject.label
-            subject.duration -= 2
+            subject.duration -= SLOT_DURATION
 
             if subject.duration == 0:
                 break
