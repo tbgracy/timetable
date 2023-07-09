@@ -39,5 +39,5 @@ wcc-timetable-generator
 - [ ] Fix display and algo so that there are are 1 hour classes
 - [ ] Add an animated GIF as demo to `README.md`
 - [ ] Write tests
-- [ ] Add quit button
+- [x] Add quit button
 - [ ] Print error messages
