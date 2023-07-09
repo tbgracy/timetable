@@ -48,7 +48,7 @@ class MyApp(App):
         yield DataTable(id="table")
         with Container(id="btn-container"):
             yield Button("Générer", id="submit")
-            yield Button("Quiter", id="quite")
+            yield Button("Quitter", id="quit")
 
     @staticmethod
     def transposed(data):
@@ -111,7 +111,7 @@ class MyApp(App):
         except Exception as e_:
             pass
     
-    @on(Button.Pressed, "#quite")
+    @on(Button.Pressed, "#quit")
     def quit_action(self, event: Button.Pressed):
         exit()
 
