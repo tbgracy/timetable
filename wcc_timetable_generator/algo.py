@@ -1,5 +1,5 @@
 from typing import List
-from subject_model import Subject
+from .subject_model import Subject
 from random import shuffle
 from pprint import pprint as print
 
