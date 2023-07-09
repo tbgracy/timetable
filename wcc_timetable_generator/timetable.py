@@ -26,7 +26,7 @@ class MyApp(App):
                 yield Input(id="sgbd", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
-                yield Label("System and Network Administration")
+                yield Label("System & Network Admin")
                 yield Input(id="sysAdmin", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
@@ -38,7 +38,7 @@ class MyApp(App):
                 yield Input(id="algo", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
-                yield Label("Communitcation")
+                yield Label("Communication")
                 yield Input(id="comm", placeholder="Hours", validators=[Number(minimum=2, maximum=6)])
 
             with Container(classes="form"):
@@ -73,9 +73,14 @@ class MyApp(App):
         return transposed_data
 
     def on_mount(self) -> None:
+        global row_keys
+        
         table = self.query_one(DataTable)
         table.zebra_stripes = True
         table.add_columns(*Jours)
+        emtpy_table_rows = [h + line for h, line in zip(horaires, [[], [], [], [], [], [], [], []])]
+        emtpy_table_rows.insert(4, [])
+        row_keys = table.add_rows(emtpy_table_rows)
 
     @on(Button.Pressed, "#submit")
     def submit_action(self, event: Button.Pressed) -> None:
