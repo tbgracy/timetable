@@ -11,9 +11,9 @@ Jours = ("Horaire/Jours", "  Lundi  ", "  Mardi  ",
          "  Mercredi  ", "  Jeudi  ", "  Vendredi  ", "  Samedi  ")
 horaires = [["8h30 - 10h30"], ["10h45 - 12h45"],
             ["13h30 - 15h30"], ["15h45 - 17h45"]]
-separator = [[""], [""]]
 
 row_keys = []
+
 
 class MyApp(App):
     CSS_PATH = "timetable.css"
@@ -99,8 +99,8 @@ class MyApp(App):
 
             table = self.query_one("#table", DataTable)
 
-            time_table = [h + subjects_in_one_day for h,
-                          subjects_in_one_day in zip(horaires, self.transposed(time_table))] + separator
+            time_table = [h + line for h,
+                          line in zip(horaires, self.transposed(time_table))]
 
             for row_key in row_keys:
                 table.remove_row(row_key)
