@@ -79,7 +79,7 @@ class MyApp(App):
         table = self.query_one(DataTable)
         table.zebra_stripes = True
         table.add_columns(*Jours)
-        emtpy_table_rows = [h + line for h, line in zip(horaires, [[], [], [], [], [], [], [], []])]
+        emtpy_table_rows = [h + line for h, line in zip(hourly, [[], [], [], [], [], [], [], []])]
         emtpy_table_rows.insert(4, [])
         row_keys = table.add_rows(emtpy_table_rows)
 
@@ -104,12 +104,12 @@ class MyApp(App):
                     raise Exception
 
             subjects = [
-                Subject("SGBD", heur_sgb),
-                Subject("SysAdmin", heur_sys),
-                Subject("Dev WEB", heur_dev),
-                Subject("Algo", heur_algo),
-                Subject("Comm", heur_comm),
-                Subject("Anglais", heur_ang)
+                Subject("DBMS", heur_sgb),
+                Subject("System & Network Admin", heur_sys),
+                Subject("Web Development", heur_dev),
+                Subject("Algorithm", heur_algo),
+                Subject("Communication", heur_comm),
+                Subject("English", heur_ang)
             ]
 
             time_table = generate_timetable(subjects)
