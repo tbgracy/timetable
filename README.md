@@ -37,6 +37,6 @@ wcc-timetable-generator
 - [x] Add GUI-like UI
 - [x] Publish to PyPI
 - [ ] Add an animated GIF as demo to `README.md`
-- [ ] Write tests
+- [x] Write tests
 - [x] Add quit button
 - [x] Print error messages
