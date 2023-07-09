@@ -5,12 +5,12 @@ from textual.containers import Container
 from textual.validation import Number
 from textual.widgets import Button, Input, Label, DataTable, LoadingIndicator
 
-from .algo import Subject, generate_timetable
+from algo import Subject, generate_timetable
 
 Jours = ("Horaire/Jours", "  Lundi  ", "  Mardi  ",
          "  Mercredi  ", "  Jeudi  ", "  Vendredi  ", "  Samedi  ")
-horaires = [["8h30 - 10h30"], ["10h45 - 12h45"],
-            ["13h30 - 15h30"], ["15h45 - 17h45"]]
+horaires = [["8h30-9h30"], ["9h30-10h30"], ["10h30-11h30"], ["11h30-12h30"],
+            ["12h30-13h30"], ["13h30-14h30"], ["14h30-15h30"], ["15h30-16h30"], ["16h30-17h30"]]
 
 row_keys = []
 
