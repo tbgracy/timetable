@@ -10,7 +10,7 @@ from .algo import Subject, generate_timetable
 Jours = ("", "  Monday  ", "  Tuesday  ",
          "  Wednesday  ", "  Thursday  ", "  Friday  ", "  Saturday  ")
 hourly = [["8:30 AM-9:30 AM"], ["9:30 AM-10:30 AM"], ["10:30 AM-11:30 AM"], ["11:30 AM-12:30 PM"],
-            ["13:30 PM-14:30 PM"], ["14:30 PM-15:30 PM"], ["15:30 PM-16:30 PM"], ["16:30 PM-17:30 PM"]]
+          ["13:30 PM-14:30 PM"], ["14:30 PM-15:30 PM"], ["15:30 PM-16:30 PM"], ["16:30 PM-17:30 PM"]]
 
 row_keys = []
 
@@ -54,7 +54,8 @@ class MyApp(App):
     @on(Input.Changed)
     def show_invalid_reasons(self, event: Input.Changed) -> None:
         if not event.validation_result.is_valid:
-            self.query_one(Pretty).update(event.validation_result.failure_descriptions)
+            self.query_one(Pretty).update(
+                event.validation_result.failure_descriptions)
         else:
             self.query_one(Pretty).update("Everything is fine")
 
@@ -91,7 +92,7 @@ class MyApp(App):
             heur_ang = int(self.query_one("#ang", Input).value)
 
             hours = [heur_sgb, heur_sys, heur_dev,
-                    heur_algo, heur_comm, heur_ang]
+                     heur_algo, heur_comm, heur_ang]
 
             for h in hours:
                 if not 2 <= h <= 6:
@@ -113,9 +114,9 @@ class MyApp(App):
             transposed_timetable = self.transposed(time_table)
 
             timetable_plus_hourly = [hour + line for hour,
-                          line in zip(hourly, transposed_timetable)]
+                                     line in zip(hourly, transposed_timetable)]
 
-            timetable_plus_hourly.insert(4, []) # add seprator line
+            timetable_plus_hourly.insert(4, [])  # add seprator line
 
             for row_key in row_keys:
                 table.remove_row(row_key)
@@ -124,7 +125,7 @@ class MyApp(App):
 
         except Exception as e_:
             pass
-    
+
     @on(Button.Pressed, "#quit")
     def quit_action(self, event: Button.Pressed):
         exit()
