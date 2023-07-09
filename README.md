@@ -36,6 +36,8 @@ wcc-timetable-generator
 - [x] Add the algorithm 
 - [x] Add GUI-like UI
 - [x] Publish to PyPI
+- [ ] Fix display and algo so that there are are 1 hour classes
+- [ ] Add an animated GIF as demo to `README.md`
 - [ ] Write tests
 - [ ] Add quit button
 - [ ] Print error messages

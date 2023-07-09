@@ -5,7 +5,7 @@ from textual.containers import Container
 from textual.validation import Number
 from textual.widgets import Button, Input, Label, DataTable, LoadingIndicator
 
-from algo import Subject, generate_timetable
+from .algo import Subject, generate_timetable
 
 Jours = ("Horaire/Jours", "  Lundi  ", "  Mardi  ",
          "  Mercredi  ", "  Jeudi  ", "  Vendredi  ", "  Samedi  ")
