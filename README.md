@@ -13,12 +13,21 @@ A CLI tool that allow you to generate a timetable for your school or university 
 
  ### 💻 Local installation
 
+To install this project locally, you first have to clone this repo and install [poetry](https://python-poetry.org/) with pip : `pip install poetry`.
+Then, go to the root directory and run the following commands : 
+```bash
+poetry install # install all the necessary dependencies
+poetry build
+poetry run python -m wcc_timetable_generator 
+```
+
  ### 🌐 Installation with PIP
  ```bash
  pip install wcc-timetable-generator
  ```
 
 ## 🖱 Usage
+If you installed it with pip, this is how to run the project : 
 ```bash
 wcc-timetable-generator
 ```
